@@ -3,9 +3,15 @@ const express = require('express')
 const mongoose = require('mongoose')
 const workoutRoutes = require('./routes/workout')
 const app = express()
+const cors = require('cors')
+
 
 // middlewares
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use(cors())
 app.use((req,res,next)=>{
     console.log(req.path,req.method)
     next()

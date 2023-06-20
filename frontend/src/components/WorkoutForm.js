@@ -1,20 +1,20 @@
 import { useState } from "react"
 const WorkoutForm = () => {
 
-const [title, setTitle] = useState('') 
-const [load,setLoads] = useState('') 
-const [reps, setReps] = useState('') 
-const [error,setError] =useState('')
+const [title, setTitle] = useState([]) 
+const [loads,setLoads] = useState([]) 
+const [reps, setReps] = useState([]) 
+const [error,setError] =useState([])
 
 const handleSubmit = async (e)=>{
     e.preventDefault()
-    const workout = {title,load,reps}
+    const workout = {title,loads,reps}
 
-    const response =await fetch('api/workouts/',{
+    const response =await fetch('http://localhost:4000/api/workout/',{
         method:"POST",
         body:JSON.stringify(workout),
         headers:{
-            "Cotent-Type":"application/json"
+            "Content-Type":"application/json"
         }       
     })
 
@@ -45,7 +45,7 @@ const handleSubmit = async (e)=>{
         <input
          type="number"
          onChange={(e)=>setLoads(e.target.value)}
-         value= {load}
+         value= {loads}
        />
         <label >Number of reps</label>
         <input
